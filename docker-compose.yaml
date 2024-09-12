@@ -1,0 +1,11 @@
+version: '3.1'
+services:
+  web:
+    container_name: calc
+    command: python src/main.py
+    build:
+      context: .
+    volumes:
+      - .:/home/userapp/app/.
+    ports:
+      - '8000:8000'
