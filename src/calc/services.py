@@ -45,6 +45,13 @@ class NumbersService:
         :param numbers: list[int]
         :return: float
         """
+        if not numbers:
+            return 0.0
+
         sum_numbers = await self._sum(numbers)
         quantity_numbers = len(numbers)
+
+        if sum_numbers == 0:
+            return 0.0
+
         return await self.number_service._divide(sum_numbers, quantity_numbers)
