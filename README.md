@@ -103,6 +103,7 @@ $ pytest src/tests
 
 ## 📚 Documentação
 A documentação deste projeto e especificação da api está disponível em:
+Ao acessar algum dos links abaixo é possível obter os detalhes de como consumir a API.
 
 ```sh
 $ http://localhost:8000/redoc/ #ou

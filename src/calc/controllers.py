@@ -25,7 +25,7 @@ class CalcController:
             number_list = payload["numbers"]
             sum_numbers = await self.service._sum(numbers=number_list)
             average = await self.service._average(numbers=number_list)
-            return CalcOutput(sum=sum_numbers, average=average)
+            return CalcOutput(sum=sum_numbers, average=round(average, 2))
 
         except Exception as exc:
             logger.error(f"Error to make operations: {exc}")
