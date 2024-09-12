@@ -1,6 +1,6 @@
 class NumberService:
     @staticmethod
-    def _sum(a: int, b: int) -> int:
+    async def _sum(a: int, b: int) -> int:
         """
         Sum two numbers and return the result
         :param a: int
@@ -10,7 +10,7 @@ class NumberService:
         return a + b
 
     @staticmethod
-    def _divide(a: int, b: int) -> float:
+    async def _divide(a: int, b: int) -> float:
         """
         Divide two numbers and return the result
         :param a: int
@@ -21,26 +21,30 @@ class NumberService:
 
 
 class NumbersService:
-    @staticmethod
-    def _sum(numbers: list[int] = []) -> int:
+    def __init__(self) -> None:
+        self.number_service = NumberService()
+
+    async def _sum(self, numbers: list[int] = []) -> int:
         """
         Sum a list of numbers and return the result
         :param numbers: list[int]
         :return: int
         """
-        result = 0
-        number_service = Number()
-        for number in numbers:
-            result += number_service._sum(result, number)
+        if not numbers:
+            return 0
+
+        result = numbers[0]
+        for i in range(1, len(numbers)):
+            result = await self.number_service._sum(result, numbers[i])
+
         return result
 
-    def _average(self, numbers: list[int] = []) -> float:
+    async def _average(self, numbers: list[int] = []) -> float:
         """
         Calculate the average of a list of numbers and return the result
         :param numbers: list[int]
         :return: float
         """
-        number_service = Number()
-        sum_numbers = self._sum(numbers)
+        sum_numbers = await self._sum(numbers)
         quantity_numbers = len(numbers)
-        return number_service._divide(sum_numbers, quantity_numbers)
+        return await self.number_service._divide(sum_numbers, quantity_numbers)

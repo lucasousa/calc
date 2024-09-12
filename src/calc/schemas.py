@@ -9,8 +9,8 @@ class CalcIput(BaseModel):
 
 
 class CalcOutput(BaseModel):
-    sum: int
-    average: float
+    sum: int = 0
+    average: float = 0.0
 
     class Config:
         from_attributes = True
